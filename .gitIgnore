@@ -1,0 +1,48 @@
+# Entorno virtual
+venv/
+env/
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de base de datos
+*.db
+*.sqlite3
+
+# Archivos de log y backup
+*.log
+*.bak
+
+# Archivos temporales
+*.swp
+*.swo
+*.tmp
+*.temp
+
+# Archivos del sistema
+.DS_Store
+
+# Directorios de IDEs
+.idea/
+.vscode/
+
+# Archivos de entorno
+.env
+
+# Caché de pytest
+.pytest_cache/
+
+# Cobertura de código
+.coverage
+htmlcov/
+
+# Directorios de construcción
+dist/
+build/
+*.egg-info/
+
+# Migraciones de base de datos
+migrations/
