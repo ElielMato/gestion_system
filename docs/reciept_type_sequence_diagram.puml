@@ -1,0 +1,24 @@
+@startuml ReceiptTypeSequence
+
+actor User
+participant "ReceiptType" as ReceiptType
+participant "Receipt" as Receipt
+
+User -> ReceiptType : Create new receipt type
+activate ReceiptType
+ReceiptType -> ReceiptType : Set name
+ReceiptType -> ReceiptType : Set description
+ReceiptType -> ReceiptType : Set type (1: In, 2: Transfer, -1: Out)
+ReceiptType --> User : Receipt type created
+deactivate ReceiptType
+
+User -> Receipt : Create new receipt
+activate Receipt
+Receipt -> ReceiptType : Get receipt type
+activate ReceiptType
+ReceiptType --> Receipt : Return receipt type
+deactivate ReceiptType
+Receipt --> User : Receipt created with type
+deactivate Receipt
+
+@enduml
