@@ -1,0 +1,46 @@
+@startuml StockSequence
+
+actor User
+participant "Stock" as Stock
+participant "Receipt" as Receipt
+participant "ReceiptType" as ReceiptType
+participant "Article" as Article
+
+User -> Receipt : Process receipt
+activate Receipt
+
+Receipt -> Stock : Update stock
+activate Stock
+
+Stock -> Receipt : Get receipt type
+Receipt -> ReceiptType : Get type
+activate ReceiptType
+ReceiptType --> Receipt : Return type
+Receipt --> Stock : Return receipt type
+deactivate ReceiptType
+
+Stock -> Receipt : Get receipt items
+Receipt --> Stock : Return receipt items
+
+loop for each item
+    Stock -> Article : Get article
+    activate Article
+    Article --> Stock : Return article
+    deactivate Article
+    
+    alt Receipt Type is "In"
+        Stock -> Stock : Increase stock quantity
+    else Receipt Type is "Out"
+        Stock -> Stock : Decrease stock quantity
+    else Receipt Type is "Transfer"
+        Stock -> Stock : Adjust stock between locations
+    end
+end
+
+Stock --> Receipt : Stock updated
+deactivate Stock
+
+Receipt --> User : Receipt processed and stock updated
+deactivate Receipt
+
+@enduml
