@@ -46,3 +46,6 @@ build/
 
 # Migraciones de base de datos
 migrations/
+
+# Workspace
+*.code-workspace
