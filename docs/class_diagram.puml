@@ -5,6 +5,8 @@ class Article {
     - description: str 
     - category: Category
     - brand: Brand
+    - minimun_stock: float
+    - code_ean13: str
 }
 
 class Category {
@@ -35,6 +37,7 @@ class ReceiptHeader {
 class ReceiptItem {
     - article: Article
     - quantity: float
+    - batch: Batch
 }
 
 class ReceiptFooter {
@@ -47,16 +50,25 @@ class Receipt {
     - footer: ReceiptFooter
 }
 
+class Notification {
+    - message: str
+    - type: int // 1: Info, 2: Warning, 3: Error
+    - date: datetime
+}
+
+class Batch {
+    - code: str
+    - expiration_date: datetime
+}
+
 Stock --> Article
 Brand --> Article
 Category --> Article
+Batch --> Article
 
-Stock --> ReceiptItem
-
-ReceiptHeader --> Receipt
-ReceiptItem --> Receipt
-ReceiptFooter --> Receipt
-
-Receipt --> ReceiptType
+ReceiptType --> Receipt 
+ReceiptHeader --- Receipt
+ReceiptItem --- Receipt
+ReceiptFooter --- Receipt
 
 @enduml
