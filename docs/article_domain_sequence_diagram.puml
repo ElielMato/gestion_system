@@ -1,0 +1,54 @@
+@startuml Article Sequence Diagram
+
+actor Client
+participant "ArticleController" as Controller
+participant "ArticleService" as Service
+participant "ArticleRepository" as Repository
+database "Database" as DB
+
+== Create Article ==
+Client -> Controller : createArticle(articleData)
+Controller -> Service : createArticle(articleData)
+Service -> Repository : save(article)
+Repository -> DB : INSERT article
+DB --> Repository : confirmation
+Repository --> Service : saved article
+Service --> Controller : article
+Controller --> Client : article created
+
+== Read Article ==
+Client -> Controller : getArticle(id)
+Controller -> Service : getArticle(id)
+Service -> Repository : findById(id)
+Repository -> DB : SELECT article
+DB --> Repository : article data
+Repository --> Service : article
+Service --> Controller : article
+Controller --> Client : article details
+
+== Update Article ==
+Client -> Controller : updateArticle(id, updatedData)
+Controller -> Service : updateArticle(id, updatedData)
+Service -> Repository : findById(id)
+Repository -> DB : SELECT article
+DB --> Repository : article data
+Repository --> Service : article
+Service -> Service : update article fields
+Service -> Repository : save(updatedArticle)
+Repository -> DB : UPDATE article
+DB --> Repository : confirmation
+Repository --> Service : updated article
+Service --> Controller : updated article
+Controller --> Client : article updated
+
+== Delete Article ==
+Client -> Controller : deleteArticle(id)
+Controller -> Service : deleteArticle(id)
+Service -> Repository : deleteById(id)
+Repository -> DB : DELETE article
+DB --> Repository : confirmation
+Repository --> Service : deletion status
+Service --> Controller : deletion status
+Controller --> Client : article deleted
+
+@enduml

@@ -1,0 +1,64 @@
+@startuml Category Sequence Diagram
+
+actor Client
+participant "CategoryController" as Controller
+participant "CategoryService" as Service
+participant "CategoryRepository" as Repository
+database "Database" as DB
+
+== Create Category ==
+Client -> Controller : createCategory(categoryData)
+Controller -> Service : createCategory(categoryData)
+Service -> Repository : save(category)
+Repository -> DB : INSERT category
+DB --> Repository : confirmation
+Repository --> Service : saved category
+Service --> Controller : category
+Controller --> Client : category created
+
+== Read Category ==
+Client -> Controller : getCategory(id)
+Controller -> Service : getCategory(id)
+Service -> Repository : findById(id)
+Repository -> DB : SELECT category
+DB --> Repository : category data
+Repository --> Service : category
+Service --> Controller : category
+Controller --> Client : category details
+
+== Update Category ==
+Client -> Controller : updateCategory(id, updatedData)
+Controller -> Service : updateCategory(id, updatedData)
+Service -> Repository : findById(id)
+Repository -> DB : SELECT category
+DB --> Repository : category data
+Repository --> Service : category
+Service -> Service : update category fields
+Service -> Repository : save(updatedCategory)
+Repository -> DB : UPDATE category
+DB --> Repository : confirmation
+Repository --> Service : updated category
+Service --> Controller : updated category
+Controller --> Client : category updated
+
+== Delete Category ==
+Client -> Controller : deleteCategory(id)
+Controller -> Service : deleteCategory(id)
+Service -> Repository : deleteById(id)
+Repository -> DB : DELETE category
+DB --> Repository : confirmation
+Repository --> Service : deletion status
+Service --> Controller : deletion status
+Controller --> Client : category deleted
+
+== Get All Categories ==
+Client -> Controller : getAllCategories()
+Controller -> Service : getAllCategories()
+Service -> Repository : findAll()
+Repository -> DB : SELECT all categories
+DB --> Repository : categories data
+Repository --> Service : categories list
+Service --> Controller : categories list
+Controller --> Client : all categories
+
+@enduml
