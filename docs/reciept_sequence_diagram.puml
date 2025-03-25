@@ -1,0 +1,37 @@
+@startuml ReceiptSequence
+
+actor User
+participant "Receipt" as Receipt
+participant "ReceiptHeader" as ReceiptHeader
+participant "ReceiptItem" as ReceiptItem
+participant "ReceiptFooter" as ReceiptFooter
+participant "Article" as Article
+
+User -> Receipt : Create new receipt
+activate Receipt
+
+Receipt -> ReceiptHeader : Create header
+activate ReceiptHeader
+ReceiptHeader --> Receipt : Header created
+deactivate ReceiptHeader
+
+loop for each item
+    Receipt -> ReceiptItem : Add item
+    activate ReceiptItem
+    ReceiptItem -> Article : Get article details
+    activate Article
+    Article --> ReceiptItem : Return article details
+    deactivate Article
+    ReceiptItem --> Receipt : Item added
+    deactivate ReceiptItem
+end
+
+Receipt -> ReceiptFooter : Calculate total
+activate ReceiptFooter
+ReceiptFooter --> Receipt : Total calculated
+deactivate ReceiptFooter
+
+Receipt --> User : Receipt created
+deactivate Receipt
+
+@enduml
