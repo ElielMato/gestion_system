@@ -49,3 +49,6 @@ migrations/
 
 # Workspace
 *.code-workspace
+
+# Docker database data
+docker/db/data/
