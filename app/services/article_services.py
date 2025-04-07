@@ -1,27 +1,28 @@
-from app.models import Article
-from app.repository import ArticleRepository
 from typing import List
+from app.models import Article
+from app.repositories import ArticleRepositories
+article_repositories = ArticleRepositories()
 
 
 class ArticleService():
     
     def save(article: Article) -> 'Article':
 
-        ArticleRepository.save(article)
+        article_repositories.save(article)
         return article
     
     def delete(article: 'Article') -> None:
-        ArticleRepository.delete(article)
+        article_repositories.delete(article)
 
     def find(id: int) -> 'Article':
-        return ArticleRepository.find(id)
+        return article_repositories.find(id)
     
     def find_all() -> List['Article']:
-        return ArticleRepository.find_all()
+        return article_repositories.find_all()
     
     def find_by(**kwargs) -> List['Article']:
-        return ArticleRepository.find_by(**kwargs)
+        return article_repositories.find_by(**kwargs)
     
     def update(article: 'Article') -> 'Article':
-        ArticleRepository.update(article)
+        article_repositories.update(article)
         return article

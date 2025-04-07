@@ -3,7 +3,7 @@ from app.models import Article
 from app import db
 
 
-class ArticleRepository():
+class ArticleRepositories():
     
     def save(article: Article) -> 'Article':
         db.session.add(article)

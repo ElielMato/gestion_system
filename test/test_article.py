@@ -7,9 +7,8 @@ from app.services import ArticleService
 
 class ArticleTestCase(unittest.TestCase):
     """
-    Test User model
-    Necesitamos aplicar principios como DRY( Don't repeat yourself) y KISS (Keep it Simple, Stupid).
-    YAGNI (You aren't gonna need it) y SOLID (Single responsability principle).
+    Test Article model
+    Aplicamos principios como DRY, KISS, YAGNI y SOLID.
     """
 
     def setUp(self):

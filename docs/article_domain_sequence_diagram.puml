@@ -3,51 +3,51 @@
 actor Client
 participant "ArticleController" as Controller
 participant "ArticleService" as Service
-participant "ArticleRepository" as Repository
+participant "Articlerepositories" as repositories
 database "Database" as DB
 
 == Create Article ==
 Client -> Controller : createArticle(articleData)
 Controller -> Service : createArticle(articleData)
-Service -> Repository : save(article)
-Repository -> DB : INSERT article
-DB --> Repository : confirmation
-Repository --> Service : saved article
+Service -> repositories : save(article)
+repositories -> DB : INSERT article
+DB --> repositories : confirmation
+repositories --> Service : saved article
 Service --> Controller : article
 Controller --> Client : article created
 
 == Read Article ==
 Client -> Controller : getArticle(id)
 Controller -> Service : getArticle(id)
-Service -> Repository : findById(id)
-Repository -> DB : SELECT article
-DB --> Repository : article data
-Repository --> Service : article
+Service -> repositories : findById(id)
+repositories -> DB : SELECT article
+DB --> repositories : article data
+repositories --> Service : article
 Service --> Controller : article
 Controller --> Client : article details
 
 == Update Article ==
 Client -> Controller : updateArticle(id, updatedData)
 Controller -> Service : updateArticle(id, updatedData)
-Service -> Repository : findById(id)
-Repository -> DB : SELECT article
-DB --> Repository : article data
-Repository --> Service : article
+Service -> repositories : findById(id)
+repositories -> DB : SELECT article
+DB --> repositories : article data
+repositories --> Service : article
 Service -> Service : update article fields
-Service -> Repository : save(updatedArticle)
-Repository -> DB : UPDATE article
-DB --> Repository : confirmation
-Repository --> Service : updated article
+Service -> repositories : save(updatedArticle)
+repositories -> DB : UPDATE article
+DB --> repositories : confirmation
+repositories --> Service : updated article
 Service --> Controller : updated article
 Controller --> Client : article updated
 
 == Delete Article ==
 Client -> Controller : deleteArticle(id)
 Controller -> Service : deleteArticle(id)
-Service -> Repository : deleteById(id)
-Repository -> DB : DELETE article
-DB --> Repository : confirmation
-Repository --> Service : deletion status
+Service -> repositories : deleteById(id)
+repositories -> DB : DELETE article
+DB --> repositories : confirmation
+repositories --> Service : deletion status
 Service --> Controller : deletion status
 Controller --> Client : article deleted
 
