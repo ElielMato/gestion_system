@@ -10,8 +10,7 @@ service = BrandService()
 class BrandTestCase(unittest.TestCase):
     """
     Test Brand model
-    Necesitamos aplicar principios como DRY( Don't repeat yourself) y KISS (Keep it Simple, Stupid).
-    YAGNI (You aren't gonna need it) y SOLID (Single responsability principle).
+    Aplicamos principios como DRY, KISS, YAGNI y SOLID.
     """
 
     def setUp(self):

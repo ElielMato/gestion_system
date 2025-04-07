@@ -1,9 +1,9 @@
 from typing import List
 from app.models import Brand
 from app import db
-from app.repository import CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository
+from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
 
-class BrandRepository(CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository):
+class BrandRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
 
     def save(self, brand:Brand) -> Brand:
         db.session.add(brand)

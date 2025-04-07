@@ -3,61 +3,61 @@
 actor Client
 participant "BrandController" as Controller
 participant "BrandService" as Service
-participant "BrandRepository" as Repository
+participant "Brandrepositories" as repositories
 database "Database" as DB
 
 == Create Brand ==
 Client -> Controller : createBrand(brandData)
 Controller -> Service : createBrand(brandData)
-Service -> Repository : save(brand)
-Repository -> DB : INSERT brand
-DB --> Repository : confirmation
-Repository --> Service : saved brand
+Service -> repositories : save(brand)
+repositories -> DB : INSERT brand
+DB --> repositories : confirmation
+repositories --> Service : saved brand
 Service --> Controller : brand
 Controller --> Client : brand created
 
 == Read Brand ==
 Client -> Controller : getBrand(id)
 Controller -> Service : getBrand(id)
-Service -> Repository : findById(id)
-Repository -> DB : SELECT brand
-DB --> Repository : brand data
-Repository --> Service : brand
+Service -> repositories : findById(id)
+repositories -> DB : SELECT brand
+DB --> repositories : brand data
+repositories --> Service : brand
 Service --> Controller : brand
 Controller --> Client : brand details
 
 == Update Brand ==
 Client -> Controller : updateBrand(id, updatedData)
 Controller -> Service : updateBrand(id, updatedData)
-Service -> Repository : findById(id)
-Repository -> DB : SELECT brand
-DB --> Repository : brand data
-Repository --> Service : brand
+Service -> repositories : findById(id)
+repositories -> DB : SELECT brand
+DB --> repositories : brand data
+repositories --> Service : brand
 Service -> Service : update brand fields
-Service -> Repository : save(updatedBrand)
-Repository -> DB : UPDATE brand
-DB --> Repository : confirmation
-Repository --> Service : updated brand
+Service -> repositories : save(updatedBrand)
+repositories -> DB : UPDATE brand
+DB --> repositories : confirmation
+repositories --> Service : updated brand
 Service --> Controller : updated brand
 Controller --> Client : brand updated
 
 == Delete Brand ==
 Client -> Controller : deleteBrand(id)
 Controller -> Service : deleteBrand(id)
-Service -> Repository : deleteById(id)
-Repository -> DB : DELETE brand
-DB --> Repository : confirmation
-Repository --> Service : deletion status
+Service -> repositories : deleteById(id)
+repositories -> DB : DELETE brand
+DB --> repositories : confirmation
+repositories --> Service : deletion status
 Service --> Controller : deletion status
 Controller --> Client : brand deleted
 
 == Get All Brands ==
 Client -> Controller : getAllBrands()
 Controller -> Service : getAllBrands()
-Service -> Repository : findAll()
-Repository -> DB : SELECT all brands
-DB --> Repository : brands data
-Repository --> Service : brands list
+Service -> repositories : findAll()
+repositories -> DB : SELECT all brands
+DB --> repositories : brands data
+repositories --> Service : brands list
 Service --> Controller : brands list
 Controller --> Client : all brands
 
