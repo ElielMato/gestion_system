@@ -9,7 +9,7 @@ service = ReceiptTypeService()
 class ReceiptTypeTestCase(unittest.TestCase):
     """
     Test Receipt Type Model
-    Aplicamos principios como DRY, KISS, YAGNI y SOLID.
+    We apply principle such as DRY, KISS, YAGNI and, SOLID
     """
 
     def setUp(self):

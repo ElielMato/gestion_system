@@ -4,13 +4,13 @@
 # from app import create_app
 # from app import db
 # from app.models import Receipt, ReceiptHeader, ReceiptFooter, ReceiptItem
-# from app.services import ReceiptService
-# service = ReceiptService()
+# # from app.services import ReceiptService
+# # service = ReceiptService()
 
 # class ReceiptTestCase(unittest.TestCase):
 #     """
 #     Test Receipt Model
-#     Aplicamos principios como DRY, KISS, YAGNI y SOLID.
+#     We apply principle such as DRY, KISS, YAGNI and, SOLID
 #     """
 
 #     def setUp(self):
@@ -27,23 +27,24 @@
 
 #     def test_receipt(self):
 #         receipt = self.__new_receipt()
+#         self.assertEqual(receipt.header.id, 1)
+#         self.assertEqual(receipt.footer.id, 1)
+#         self.assertEqual(len(receipt.items), 3)
     
-#     def __get_receipt_header() -> ReceiptHeader:
+#     def __get_receipt_header(self) -> ReceiptHeader:
 #         header = ReceiptHeader()
-#         header.id = 1
 #         header.submission_date = datetime.now()
 #         return header
-    
-#     def __get_receipt_item() -> ReceiptItem:
+
+#     def __get_receipt_item(self) -> list[ReceiptItem]:
 #         items = []
 #         items.append(ReceiptItem(id_article=1, quantity=10, batch='batch1'))
-#         items.append(ReceiptItem(id_article=2, quantity=5, batch='batch2')) 
+#         items.append(ReceiptItem(id_article=2, quantity=5, batch='batch2'))
 #         items.append(ReceiptItem(id_article=3, quantity=2, batch='batch3'))
 #         return items
-        
+
 #     def __get_receipt_footer(self) -> ReceiptFooter:
 #         footer = ReceiptFooter()
-#         footer.id = 1
 #         footer.total = 100.0
 #         return footer
     
