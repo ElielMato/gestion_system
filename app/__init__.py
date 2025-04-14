@@ -4,10 +4,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
 from app.config import config
+from app.routes import Route
 
 db = SQLAlchemy()
 migrate = Migrate()
-marshmallow = Marshmallow()
+ma = Marshmallow()
 
 def create_app() -> Flask:
     app_context = os.getenv('FLASK_CONTEXT')
@@ -15,9 +16,12 @@ def create_app() -> Flask:
     f = config.factory(app_context if app_context else 'development')
     app.config.from_object(f)
 
+    routes = Route()
+    routes.init_app(app)
+
     db.init_app(app)
     migrate.init_app(app, db)
-    marshmallow.init_app(app)
+    ma.init_app(app)
     
     @app.shell_context_processor    
     def ctx():

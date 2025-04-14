@@ -13,7 +13,7 @@ result = {}
 status_code = 200
 
 @brand_bp.route('/brand/<int:id>', methods=['GET'])
-def get():
+def get(id: int):
     """Get a brand by ID."""
     logging.debug(f"Request to get brand with ID: {id}")
     brand = brand_service.find(id)
@@ -28,7 +28,7 @@ def get_all():
     """Get all brands."""
     logging.debug("Request to get all brands")
     brands = brand_service.find_all()
-    message_map, message_finish = message_create({'brands': brand_map(brands, many=True)}, "Se encontraron todas las marcas")
+    message_map, message_finish = message_create({'brands': brand_map.dump(brands, many=True)}, "Se encontraron todas las marcas")
     result = message_map.dump(message_finish)
     status_code = 200
     return result, status_code
