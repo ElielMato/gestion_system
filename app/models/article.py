@@ -7,7 +7,7 @@ class Article(db.Model):
     Article con sus atributos
     """
     __tablename__ = 'articles'
-    id_article: int = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    id: int = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     name: str = db.Column('name', db.String[100], nullable=False)
     description: str = db.Column('description', db.String[150], nullable=False)
     category: str = db.Column('category', db.String[150], nullable=False)

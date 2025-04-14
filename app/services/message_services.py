@@ -12,15 +12,15 @@ class MessagesBuilder:
     code:str = ""
     data:dict = None
 
-    def add_message(self, message: str) -> "MessagesBuilder":
+    def add_message(self, message: str) -> "Message":
         self.message += message
         return self
     
-    def add_code(self, code: str) -> "MessagesBuilder":
+    def add_code(self, code: str) -> "Message":
         self.code += code
         return self
     
-    def add_data(self, data: dict) -> "MessagesBuilder":    
+    def add_data(self, data: dict) -> "Message":    
         self.data = data
         return self
     

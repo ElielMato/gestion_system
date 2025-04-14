@@ -6,23 +6,18 @@ article_repositories = ArticleRepositories()
 
 class ArticleService():
     
-    def save(article: Article) -> 'Article':
-
+    def save(self, article: Article) -> 'Article':
         article_repositories.save(article)
         return article
     
-    def delete(article: 'Article') -> None:
+    def delete(self, article: 'Article') -> None:
         article_repositories.delete(article)
 
-    def find(id: int) -> 'Article':
+    def find(self, id: int) -> 'Article':
         return article_repositories.find(id)
     
-    def find_all() -> List['Article']:
+    def find_all(self) -> List['Article']:
         return article_repositories.find_all()
     
-    def find_by(**kwargs) -> List['Article']:
+    def find_by(self, **kwargs) -> List['Article']:
         return article_repositories.find_by(**kwargs)
-    
-    def update(article: 'Article') -> 'Article':
-        article_repositories.update(article)
-        return article

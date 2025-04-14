@@ -5,24 +5,20 @@ from app import db
 
 class ArticleRepositories():
     
-    def save(article: Article) -> 'Article':
+    def save(self, article: Article) -> 'Article':
         db.session.add(article)
         db.session.commit()
         return article
     
-    def delete(article: Article) -> None:
+    def delete(self, article: Article) -> None:
         db.session.delete(article)
         db.session.commit()
 
-    def find(id: int) -> 'Article':
+    def find(self, id: int) -> 'Article':
         return Article.query.get(id)
     
-    def find_all() -> List[Article]:
+    def find_all(self) -> List[Article]:
         return Article.query.all()
     
-    def find_by(**kwargs) -> List[Article]:
+    def find_by(self, **kwargs) -> List[Article]:
         return Article.query.filter_by(**kwargs).all()
-    
-    def update(article: Article) -> None:
-        db.session.merge(article)
-        db.session.commit()
