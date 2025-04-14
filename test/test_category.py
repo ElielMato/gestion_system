@@ -9,8 +9,8 @@ service = CategoryService()
 
 class CategoryTestCase(unittest.TestCase):
     """
-    Test Category model
-    Aplicamos principios como DRY, KISS, YAGNI y SOLID.
+    Test Category Model
+    We apply principle such as DRY, KISS, YAGNI and, SOLID
     """
 
     def setUp(self):
@@ -34,16 +34,12 @@ class CategoryTestCase(unittest.TestCase):
     def test_save(self):
         category = self.__new_category()
         category_save = service.save(category)
-        self.assertIsNotNone(category_save)
-        self.assertIsNotNone(category_save.id)
-        self.assertGreater(category_save.id, 0)
+        self.check_data(category_save)
         
     def test_find(self):
         category = self.__new_category()
         category_save = service.save(category)
-        self.assertIsNotNone(category_save)
-        self.assertIsNotNone(category_save.id)
-        self.assertEqual(category_save.id, 1)
+        self.check_data(category_save)
         category_find = service.find(category_save.id)
         self.assertIsNotNone(category_find)
 
@@ -54,9 +50,7 @@ class CategoryTestCase(unittest.TestCase):
         category1.description = "Una Categoría 1"
         category_save = service.save(category)
         service.save(category1)
-        self.assertIsNotNone(category_save)
-        self.assertIsNotNone(category_save.id)
-        self.assertEqual(category_save.id, 1)
+        self.check_data(category_save)
         categories = service.find_all()
         self.assertIsNotNone(categories)
         self.assertEqual(len(categories), 2)
@@ -64,9 +58,7 @@ class CategoryTestCase(unittest.TestCase):
     def test_find_by_id(self):
         category = self.__new_category()
         category_save = service.save(category)
-        self.assertIsNotNone(category_save)
-        self.assertIsNotNone(category_save.id)
-        self.assertGreater(category_save.id, 0)
+        self.check_data(category_save)
         category_find_by = service.find_by(id=1)
         self.assertIsNotNone(category_find_by)
 
@@ -82,9 +74,7 @@ class CategoryTestCase(unittest.TestCase):
     def test_delete(self):
         category = self.__new_category()
         category_save = service.save(category)
-        self.assertIsNotNone(category_save)
-        self.assertIsNotNone(category_save.id)
-        self.assertGreater(category_save.id, 0)
+        self.check_data(category_save)
         category_delete = service.delete(category_save)
         self.assertIsNone(category_delete)
 
@@ -93,3 +83,8 @@ class CategoryTestCase(unittest.TestCase):
         category.name = "Categoría"
         category.description = "Una Categoría"
         return category
+    
+    def check_data(self, save):
+        self.assertIsNotNone(save)
+        self.assertIsNotNone(save.id)
+        self.assertGreater(save.id, 0)
