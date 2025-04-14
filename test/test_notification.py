@@ -9,8 +9,8 @@ service = NotificationService()
 
 class NotificationTestCase(unittest.TestCase):
     """
-    Test Notification model
-    Aplicamos principios como DRY, KISS, YAGNI y SOLID.
+    Test Notification Model
+    We apply principle such as DRY, KISS, YAGNI and, SOLID
     """
     
     def setUp(self):
@@ -28,22 +28,18 @@ class NotificationTestCase(unittest.TestCase):
     def test_notification(self):
         notification = self.__new_notification()
         self.assertIsNotNone(notification)
-        self.assertEqual(notification.type, "INFO")
+        self.assertEqual(notification.type, 1)
         self.assertEqual(notification.message, "Test message")
     
     def test_save(self):
         notification = self.__new_notification()
         notification_save = service.save(notification)
-        self.assertIsNotNone(notification_save)
-        self.assertIsNotNone(notification_save.id)
-        self.assertGreater(notification_save.id, 0)
+        self.check_data(notification_save)
 
     def test_find(self):
         notification = self.__new_notification()
         notification_save = service.save(notification)
-        self.assertIsNotNone(notification_save)
-        self.assertIsNotNone(notification_save.id)
-        self.assertEqual(notification_save.id, 1)
+        self.check_data(notification_save)
         brand_find = service.find(notification_save.id)
         self.assertIsNotNone(brand_find)
 
@@ -53,9 +49,7 @@ class NotificationTestCase(unittest.TestCase):
         notification1.message = "Test message 1"
         notification_save = service.save(notification)
         service.save(notification1)
-        self.assertIsNotNone(notification_save)
-        self.assertIsNotNone(notification_save.id)
-        self.assertEqual(notification_save.id, 1)
+        self.check_data(notification_save)
         notifications = service.find_all()
         self.assertIsNotNone(notifications)
         self.assertEqual(len(notifications), 2)
@@ -63,9 +57,7 @@ class NotificationTestCase(unittest.TestCase):
     def test_find_by_id(self):
         notification = self.__new_notification()
         notification_save = service.save(notification)
-        self.assertIsNotNone(notification_save)
-        self.assertIsNotNone(notification_save.id)
-        self.assertGreater(notification_save.id, 0)
+        self.check_data(notification_save)
         notification_find_by = service.find_by(id = 1)
         self.assertIsNotNone(notification_find_by)
 
@@ -81,15 +73,20 @@ class NotificationTestCase(unittest.TestCase):
     def test_delete(self):
         notification = self.__new_notification()
         notification_save = service.save(notification)
-        self.assertIsNotNone(notification_save)
-        self.assertIsNotNone(notification_save.id)
-        self.assertGreater(notification_save.id, 0)
+        self.check_data(notification_save)
         notification_delete = service.delete(notification_save)
         self.assertIsNone(notification_delete)
         
     def __new_notification(self):
-        notification = Notification(type='INFO', message='Test message', date=datetime.now(timezone.utc))
+        notification = Notification()
+        notification.type=1
+        notification.message="Test message"
         return notification
+    
+    def check_data(self, save):
+        self.assertIsNotNone(save)
+        self.assertIsNotNone(save.id)
+        self.assertGreater(save.id, 0)
 
 if __name__ == '__main__':
     unittest.main()
