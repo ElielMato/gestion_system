@@ -4,7 +4,7 @@ from dataclasses import dataclass
 @dataclass(init=True, eq=False)
 class Category(db.Model):
     """
-    Category con sus atributos
+    Model Category with is attribute
     """
     __tablename__ = "categories"
     id: int = db.Column("id", db.Integer, primary_key=True, autoincrement=True)
