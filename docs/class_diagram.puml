@@ -45,6 +45,7 @@ class ReceiptFooter {
 }
 
 class Receipt {
+    - type: ReceiptType
     - header: ReceiptHeader
     - items: ReceiptItem
     - footer: ReceiptFooter
