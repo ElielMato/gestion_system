@@ -9,8 +9,8 @@ service = BrandService()
 
 class BrandTestCase(unittest.TestCase):
     """
-    Test Brand model
-    Aplicamos principios como DRY, KISS, YAGNI y SOLID.
+    Test Brand Model
+    We apply principle such as DRY, KISS, YAGNI and, SOLID
     """
 
     def setUp(self):
@@ -34,16 +34,12 @@ class BrandTestCase(unittest.TestCase):
     def test_save(self):
         brand = self.__new_brand()
         brand_save = service.save(brand)
-        self.assertIsNotNone(brand_save)
-        self.assertIsNotNone(brand_save.id)
-        self.assertGreater(brand_save.id, 0)
+        self.check_data(brand_save)
         
     def test_find(self):
         brand = self.__new_brand()
         brand_save = service.save(brand)
-        self.assertIsNotNone(brand_save)
-        self.assertIsNotNone(brand_save.id)
-        self.assertEqual(brand_save.id, 1)
+        self.check_data(brand_save)
         brand_find = service.find(brand_save.id)
         self.assertIsNotNone(brand_find)
 
@@ -54,19 +50,15 @@ class BrandTestCase(unittest.TestCase):
         brand1.description = "Una Marca 1"
         brand_save = service.save(brand)
         service.save(brand1)
-        self.assertIsNotNone(brand_save)
-        self.assertIsNotNone(brand_save.id)
-        self.assertEqual(brand_save.id, 1)
+        self.check_data(brand_save)
         brands = service.find_all()
         self.assertIsNotNone(brands)
         self.assertEqual(len(brands), 2)
 
-    def test_find_by_id(self):
+    def test_find_by(self):
         brand = self.__new_brand()
         brand_save = service.save(brand)
-        self.assertIsNotNone(brand_save)
-        self.assertIsNotNone(brand_save.id)
-        self.assertGreater(brand_save.id, 0)
+        self.check_data(brand_save)
         brand_find_by = service.find_by(id = 1)
         self.assertIsNotNone(brand_find_by)
 
@@ -83,15 +75,17 @@ class BrandTestCase(unittest.TestCase):
     def test_delete(self):
         brand = self.__new_brand()
         brand_save = service.save(brand)
-        self.assertIsNotNone(brand_save)
-        self.assertIsNotNone(brand_save.id)
-        self.assertGreater(brand_save.id, 0)
+        self.check_data(brand_save)
         product_delete = service.delete(brand_save)
         self.assertIsNone(product_delete)
-
 
     def __new_brand(self):
         brand = Brand()
         brand.name = "Marca"
         brand.description = "Una Marca"
         return brand
+    
+    def check_data(self, save):
+        self.assertIsNotNone(save)
+        self.assertIsNotNone(save.id)
+        self.assertGreater(save.id, 0)
