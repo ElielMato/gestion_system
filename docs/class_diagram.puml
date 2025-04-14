@@ -26,7 +26,7 @@ class Stock {
 class ReceiptType {
     - name: str
     - description: str
-    - type: int // 1: In, 2: Transfer, -1 Out
+    - type: int // 1: In, 0: Transfer, -1 Out
 }
 
 class ReceiptHeader {

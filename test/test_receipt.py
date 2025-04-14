@@ -61,10 +61,6 @@ class ReceiptTestCase(unittest.TestCase):
         self.assertEqual(receipt.id_receipt_footer, receipt_update.id_receipt_footer)
 
     def __new_receipt(self):
-        # receipt_type = ReceiptType(name="Type1", description="Description1", type=1)
-        # db.session.add(receipt_type)
-        # db.session.commit()
-
         receipt_header = ReceiptHeader(id_receipt_header=1, submission_date="2025-04-08")
         db.session.add(receipt_header)
         db.session.commit()
@@ -77,10 +73,6 @@ class ReceiptTestCase(unittest.TestCase):
         return receipt
     
     def __new_receipt1(self):
-        # receipt_type = ReceiptType(name="Type1", description="Description1", type=1)
-        # db.session.add(receipt_type)
-        # db.session.commit()
-
         receipt_header = ReceiptHeader(id_receipt_header=2, submission_date="2025-04-08")
         db.session.add(receipt_header)
         db.session.commit()

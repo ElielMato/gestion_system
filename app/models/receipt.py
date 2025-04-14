@@ -2,15 +2,16 @@ from dataclasses import dataclass
 from datetime import datetime
 from app import db
 
-# @dataclass(init=True, eq=True)
-# class ReceiptType(db.Model):
-#     """
-#     Modelo para representar el tipo de recibo
-#     """
-#     __tablename__ = 'receipt_types'
-#     name: str = db.Column('name', db.String[100], nullable=False)
-#     description: str = db.Column('description', db.String[150], nullable=True)
-#     type: int = db.Column('type', db.Integer, nullable=False)
+@dataclass(init=True, eq=True)
+class ReceiptType(db.Model):
+    """
+    Modelo para representar el tipo de recibo
+    """
+    __tablename__ = 'receipt_types'
+    id: int = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    name: str = db.Column('name', db.String[100], nullable=False)
+    description: str = db.Column('description', db.String[150], nullable=True)
+    type: int = db.Column('type', db.Integer, nullable=False)
 
 @dataclass(init=True, eq=True)
 class ReceiptHeader(db.Model):
