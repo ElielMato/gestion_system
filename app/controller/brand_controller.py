@@ -1,9 +1,7 @@
 import logging
 from flask import Blueprint, request
-from app.mapping import BrandMap
-from app.services import BrandService
-from app.mapping import MessageMap
-from app.services import MessageBuilder
+from app.mapping import MessageMap, BrandMap
+from app.services import MessageBuilder, BrandService
 
 brand_bp = Blueprint('brand', __name__)
 brand_map = BrandMap()
@@ -19,7 +17,6 @@ def get(id: int):
     brand = brand_service.find(id)
     message_map, message_finish = message_create(brand_map.dump(brand, many=False), "Se encontro la marca indicada")
     result = message_map.dump(message_finish)
-    status_code = 200
     return result, status_code
 
 
@@ -30,7 +27,6 @@ def get_all():
     brands = brand_service.find_all()
     message_map, message_finish = message_create({'brands': brand_map.dump(brands, many=True)}, "Se encontraron todas las marcas")
     result = message_map.dump(message_finish)
-    status_code = 200
     return result, status_code
 
 @brand_bp.route('/brand', methods=['POST'])
