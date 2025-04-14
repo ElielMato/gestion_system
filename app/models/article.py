@@ -4,7 +4,7 @@ from app import db
 @dataclass(init=True, eq=True)
 class Article(db.Model):
     """
-    Article con sus atributos
+    Model Article with is attribute
     """
     __tablename__ = 'articles'
     id: int = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
