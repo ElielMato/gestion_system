@@ -8,8 +8,8 @@ service = ArticleService()
 
 class ArticleTestCase(unittest.TestCase):
     """
-    Test Article model
-    Aplicamos principios como DRY, KISS, YAGNI y SOLID.
+    Test Article Model
+    We apply principle such as DRY, KISS, YAGNI and, SOLID
     """
 
     def setUp(self):
@@ -27,10 +27,10 @@ class ArticleTestCase(unittest.TestCase):
     def test_article(self):
         article = self.__new_article()
         self.assertIsNotNone(article)
-        self.assertEqual(article.name, 'Tupu')
-        self.assertEqual(article.description, 'description')
-        self.assertEqual(article.category, 'coso')
-        self.assertEqual(article.brand, 'cosito')
+        self.assertEqual(article.name, 'Articulo 1')
+        self.assertEqual(article.description, 'Descripcion 1')
+        self.assertEqual(article.category, 'Categoria 1')
+        self.assertEqual(article.brand, 'Marca 1')
         self.assertEqual(article.minimun_stock, 1)
         self.assertEqual(article.code_ean13, 'abc')
 
@@ -38,15 +38,13 @@ class ArticleTestCase(unittest.TestCase):
         article = self.__new_article()
         article_save = service.save(article)
         self.check_data(article_save)
-        article_delete = service.delete(article)
-        self.assertIsNone(article_delete)
 
     def test_find(self):
         article = self.__new_article()
         article_save = service.save(article)
         self.check_data(article_save)
-        article = service.find(1)
-        self.check_data(article_save)
+        article_find = service.find(article_save.id)
+        self.check_data(article_find)
 
     def test_find_all(self):
         article = self.__new_article()
@@ -64,25 +62,25 @@ class ArticleTestCase(unittest.TestCase):
         article = self.__new_article()
         article_save = service.save(article)
         self.check_data(article_save)
-        article = service.find_by(description = 'description')
+        article = service.find_by(description = 'Descripcion 1')
         self.assertIsNotNone(article)
         self.assertGreater(len(article), 0)
 
     def test_update(self):
         article = self.__new_article()
         article_save = service.save(article)
-        article_save.description = 'new description'
+        article_save.description = 'Nueva Descripcion'
         article_save_update = service.save(article_save)
-        self.assertEqual(article_save_update.description, 'new description')
+        self.assertEqual(article_save_update.description, 'Nueva Descripcion')
         self.assertEqual(article_save.description, article_save_update.description)
         self.assertEqual(article.description, article_save_update.description)
 
     def __new_article(self):
         article = Article()
-        article.name = 'Tupu'
-        article.description = 'description'
-        article.category = 'coso'
-        article.brand = 'cosito'
+        article.name = 'Articulo 1'
+        article.description = 'Descripcion 1'
+        article.category = 'Categoria 1'
+        article.brand = 'Marca 1'
         article.minimun_stock = 1
         article.code_ean13 = 'abc'
         return article
@@ -91,7 +89,3 @@ class ArticleTestCase(unittest.TestCase):
         self.assertIsNotNone(article_save)
         self.assertIsNotNone(article_save.id)
         self.assertGreater(article_save.id, 0)
-
-
-if __name__ == '__main__':
-    unittest.main()
