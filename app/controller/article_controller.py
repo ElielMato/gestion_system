@@ -23,7 +23,7 @@ def get(id: int):
     return result, status_code
 
 
-@article_bp.route('/articles', methods=['GET'])
+@article_bp.route('/article', methods=['GET'])
 def get_all():
     """Get all articles."""
     logging.debug("Request to get all articles")
@@ -33,7 +33,7 @@ def get_all():
     status_code = 200
     return result, status_code
 
-@article_bp.route('/articles', methods=['POST'])
+@article_bp.route('/article', methods=['POST'])
 def post():
     """Create a new article."""
     logging.debug("Request to create a new article")
@@ -45,7 +45,7 @@ def post():
     return result, status_code
 
 
-@article_bp.route('/articles/<int:id>', methods=['PUT'])
+@article_bp.route('/article/<int:id>', methods=['PUT'])
 def update(id: int):
     """Update a article by ID."""
     logging.debug(f"Request to update article with ID: {id}")
@@ -64,7 +64,7 @@ def update(id: int):
         status_code = 200
     return result, status_code
 
-@article_bp.route('/articles/<int:id>', methods=['DELETE'])
+@article_bp.route('/article/<int:id>', methods=['DELETE'])
 def delete(id:int):
     """Delete a article by ID."""
     logging.debug(f"Request to delete article with ID: {id}")
