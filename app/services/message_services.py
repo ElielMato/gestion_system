@@ -7,7 +7,7 @@ class Message:
     data:dict = None
 
 @dataclass(init=False)
-class MessagesBuilder:
+class MessageBuilder:
     message:str = ""
     code:str = ""
     data:dict = None
