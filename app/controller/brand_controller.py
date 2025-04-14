@@ -3,7 +3,7 @@ from flask import Blueprint, request
 from app.mapping import BrandMap
 from app.services import BrandService
 from app.mapping import MessageMap
-from app.services import MessagesBuilder
+from app.services import MessageBuilder
 
 brand_bp = Blueprint('brand', __name__)
 brand_map = BrandMap()
@@ -82,6 +82,6 @@ def delete(id: int):
 
 def message_create(data, message):
     message_map = MessageMap()
-    message_builder = MessagesBuilder()
+    message_builder = MessageBuilder()
     message_finish = message_builder.add_message(message).add_data(data).build()
     return message_map, message_finish
