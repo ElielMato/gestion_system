@@ -4,7 +4,7 @@ from app import db
 @dataclass(init=True, eq=False)
 class Brand(db.Model):
     """
-    Brand con sus atributos
+    Model Brand with is attribute
     """
     __tablename__ = "brands"
     id: int = db.Column("id", db.Integer, primary_key=True, autoincrement=True)
