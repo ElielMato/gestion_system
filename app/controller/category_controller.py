@@ -2,6 +2,7 @@ import logging
 from flask import Blueprint, request
 from app.mapping import MessageMap, CategoryMap
 from app.services import MessageBuilder, CategoryService
+from app.validators import validate_with
 
 category_bp = Blueprint('category', __name__)
 category_map = CategoryMap()
@@ -30,6 +31,7 @@ def get_all():
     return result, status_code
 
 @category_bp.route('/category', methods=['POST'])
+@validate_with(category_map)
 def post():
     """Create a new category."""
     logging.debug("Request to create a new category")
@@ -41,6 +43,7 @@ def post():
     return result, status_code
 
 @category_bp.route('/category/<int:id>', methods=['PUT'])
+@validate_with(category_map)
 def update(id: int):
     """Update a category by ID."""
     logging.debug(f"Request to update category with ID: {id}")
