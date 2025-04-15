@@ -2,6 +2,7 @@ import logging
 from flask import Blueprint, request
 from app.mapping import MessageMap, NotificationMap
 from app.services import MessageBuilder, NotificationService
+from app.validators import validate_with
 
 notification_bp = Blueprint('notification', __name__)
 notification_map = NotificationMap()
@@ -30,6 +31,7 @@ def get_all():
 
 
 @notification_bp.route('/notification', methods=['POST'])
+@validate_with(notification_map)
 def post():
     """Create a new notification."""
     logging.debug("Request to create a new notification")
@@ -40,6 +42,7 @@ def post():
     return result, 201
 
 @notification_bp.route('/notification/<int:id>', methods=['PUT'])
+@validate_with(notification_map)
 def update(id: int):
     """Update a notification by ID."""
     logging.debug(f"Request to update notification with ID: {id}")
