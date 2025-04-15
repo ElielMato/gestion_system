@@ -1,9 +1,8 @@
 import logging
 from flask import Blueprint, request
-from app.services import ArticleService
-from app.mapping import ArticleMap
-from app.mapping import MessageMap
-from app.services import MessageBuilder
+from app.services import MessageBuilder, ArticleService
+from app.mapping import MessageMap, ArticleMap
+from app.validators import validate_with
 
 article_bp = Blueprint('article', __name__)
 article_map = ArticleMap()
@@ -34,6 +33,7 @@ def get_all():
     return result, status_code
 
 @article_bp.route('/article', methods=['POST'])
+@validate_with(article_map)
 def post():
     """Create a new article."""
     logging.debug("Request to create a new article")
@@ -44,8 +44,8 @@ def post():
     status_code = 201
     return result, status_code
 
-
 @article_bp.route('/article/<int:id>', methods=['PUT'])
+@validate_with(article_map)
 def update(id: int):
     """Update a article by ID."""
     logging.debug(f"Request to update article with ID: {id}")
