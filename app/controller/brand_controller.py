@@ -2,6 +2,7 @@ import logging
 from flask import Blueprint, request
 from app.mapping import MessageMap, BrandMap
 from app.services import MessageBuilder, BrandService
+from app.validators import validate_with
 
 brand_bp = Blueprint('brand', __name__)
 brand_map = BrandMap()
@@ -30,6 +31,7 @@ def get_all():
     return result, status_code
 
 @brand_bp.route('/brand', methods=['POST'])
+@validate_with(brand_map)
 def post():
     """Create a new brand."""
     logging.debug("Request to create a new brand")
@@ -41,6 +43,7 @@ def post():
     return result, status_code
 
 @brand_bp.route('/brand/<int:id>', methods=['PUT'])
+@validate_with(brand_map)
 def update(id: int):
     """Update a brand by ID."""
     logging.debug(f"Request to update brand with ID: {id}")
