@@ -2,5 +2,9 @@ from .brand import Brand
 from .category import Category
 from .article import Article
 from .notification import Notification
-from .receipt import Receipt, ReceiptType, ReceiptHeader, ReceiptItem, ReceiptFooter
 from .batch import Batch
+from .receipt import Receipt
+from .receipt_type import ReceiptType
+from .receipt_header import ReceiptHeader
+from .receipt_item import ReceiptItem
+from .receipt_footer import ReceiptFooter
