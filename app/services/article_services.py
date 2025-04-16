@@ -3,7 +3,6 @@ from app.models import Article
 from app.repositories import ArticleRepositories
 article_repositories = ArticleRepositories()
 
-
 class ArticleService():
     
     def save(self, article: Article) -> 'Article':
