@@ -15,7 +15,6 @@ services:
           - PROD_DATABASE_URI=${PROD_DATABASE_URI}
           - FLASK_CONTEXT=${FLASK_CONTEXT}
 
-
 networks:
     mired:
         external: true
