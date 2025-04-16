@@ -1,23 +1,29 @@
 from typing import List
 from app.models import Batch
 from app import db
+from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
 
-class BatchRepositories():
+class BatchRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
     
-    def save(self, batch: Batch) -> 'Batch':
+    @staticmethod
+    def save(batch: Batch) -> 'Batch':
         db.session.add(batch)
         db.session.commit()
         return batch
     
-    def delete(self, batch: Batch) -> None:
+    @staticmethod
+    def delete(batch: Batch) -> None:
         db.session.delete(batch)
         db.session.commit()
 
-    def find(self, id: int) -> 'Batch':
+    @staticmethod
+    def find(id: int) -> 'Batch':
         return Batch.query.get(id)
     
-    def find_all(self) -> List[Batch]:
+    @staticmethod
+    def find_all() -> List[Batch]:
         return Batch.query.all()
     
-    def find_by(self, **kwargs) -> List[Batch]:
+    @staticmethod
+    def find_by(**kwargs) -> List[Batch]:
         return Batch.query.filter_by(**kwargs).all()
