@@ -5,31 +5,31 @@ from app import db
 class CreateAbstractRepositories(ABC):
 
     @abstractmethod
-    def save(self, model:db.Model) -> db.Model:
+    def save(model:db.Model) -> db.Model:
         pass
 
 class ReadAbstractRepositories(ABC):
     
     @abstractmethod
-    def find(self, id: int) -> 'db.Model':
+    def find(id: int) -> 'db.Model':
         pass
 
     @abstractmethod
-    def find_all(self) -> List['db.Model']:
+    def find_all() -> List['db.Model']:
         pass
     
     @abstractmethod
-    def find_by(self, **kwargs) -> List['db.Model']:
+    def find_by(**kwargs) -> List['db.Model']:
         pass
 
 class UpdateAbstractRepositories(ABC):
 
     @abstractmethod
-    def update(self, id: int, model:db.Model) -> db.Model:
+    def update(id: int, model:db.Model) -> db.Model:
         pass
 
 class DeleteAbstractRepositories(ABC):
     
     @abstractmethod
-    def delete(self, model:db.Model) -> None:
+    def delete(model:db.Model) -> None:
         pass
