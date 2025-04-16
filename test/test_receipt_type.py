@@ -26,7 +26,7 @@ class ReceiptTypeTestCase(unittest.TestCase):
 
     def test_receipt_type(self):
         receipt_type = self.__new_receipt_type()
-        self.assertEqual(receipt_type.type, 'Type')
+        self.assertEqual(receipt_type.type_entry, 1)
         self.assertEqual(receipt_type.name, 'Name')
         self.assertEqual(receipt_type.description, 'Description')
 
@@ -47,7 +47,7 @@ class ReceiptTypeTestCase(unittest.TestCase):
         receipt_type1 = self.__new_receipt_type()
         receipt_type1.name = "Name 1"
         receipt_type1.description = "Description 1"
-        receipt_type.type = 1
+        receipt_type.type_entry = 1
         receipt_type_save = service.save(receipt_type)
         service.save(receipt_type1)
         self.check_data(receipt_type_save)
@@ -59,15 +59,15 @@ class ReceiptTypeTestCase(unittest.TestCase):
         receipt_type = self.__new_receipt_type()
         receipt_type_save = service.save(receipt_type)
         self.check_data(receipt_type_save)
-        receipt_type_find_by = service.find_by(type = 1)
+        receipt_type_find_by = service.find_by(type_entry = 1)
         self.assertIsNotNone(receipt_type_find_by)
 
     def test_update(self):
         receipt_type = self.__new_receipt_type()
         receipt_type_save = service.save(receipt_type)
-        receipt_type_save.type = 0
+        receipt_type_save.type_entry = 0
         receipt_type_update_save = service.save(receipt_type_save)
-        self.assertEqual(receipt_type_update_save.type, 0)
+        self.assertEqual(receipt_type_update_save.type_entry, 0)
         self.assertEqual(receipt_type_update_save.name, receipt_type_save.name)
         self.assertEqual(receipt_type_update_save.description, receipt_type_save.description)
 
@@ -80,7 +80,7 @@ class ReceiptTypeTestCase(unittest.TestCase):
 
     def __new_receipt_type(self):
         receipt_type = ReceiptType()
-        receipt_type.type = 1
+        receipt_type.type_entry = 1
         receipt_type.name = "Name"
         receipt_type.description = "Description"
         return receipt_type

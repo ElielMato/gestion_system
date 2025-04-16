@@ -4,20 +4,25 @@ from app.repositories import CreateAbstractRepositories, ReadAbstractRepositorie
 
 class ReceiptTypeRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
     
-    def save(self, receipt_type: ReceiptType) -> ReceiptType:
+    @staticmethod
+    def save(receipt_type: ReceiptType) -> ReceiptType:
         db.session.add(receipt_type)
         db.session.commit()
         return receipt_type
     
-    def delete(self, receipt_type: ReceiptType) -> None:    
+    @staticmethod
+    def delete(receipt_type: ReceiptType) -> None:    
         db.session.delete(receipt_type)
         db.session.commit()
 
-    def find(self, id: int) -> 'ReceiptType':
+    @staticmethod
+    def find(id: int) -> 'ReceiptType':
         return ReceiptType.query.get(id)
     
-    def find_all(self) -> list:
+    @staticmethod
+    def find_all() -> list:
         return ReceiptType.query.all()
     
-    def find_by(self, **kwargs) -> list:
+    @staticmethod
+    def find_by(**kwargs) -> list:
         return ReceiptType.query.filter_by(**kwargs).all()
