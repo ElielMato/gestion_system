@@ -3,20 +3,26 @@ from app.models import Category
 from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
 
 class CategoryRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
-    def save(self, category: Category) -> Category:
+
+    @staticmethod
+    def save(category: Category) -> Category:
         db.session.add(category)
         db.session.commit()
         return category
 
-    def find(self, category_id: int) -> Category:
-        return Category.query.get(category_id)
-
-    def find_all(self) -> list:
-        return Category.query.all()
-
-    def delete(self, category: Category) -> None:
+    @staticmethod
+    def delete(category: Category) -> None:
         db.session.delete(category)
         db.session.commit()
 
-    def find_by(self, **kwargs) -> Category:
+    @staticmethod
+    def find(category_id: int) -> Category:
+        return Category.query.get(category_id)
+
+    @staticmethod
+    def find_all() -> list:
+        return Category.query.all()
+    
+    @staticmethod
+    def find_by(**kwargs) -> Category:
         return Category.query.filter_by(**kwargs).first()

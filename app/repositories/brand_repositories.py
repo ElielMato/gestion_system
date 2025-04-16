@@ -5,21 +5,26 @@ from app.repositories import CreateAbstractRepositories, ReadAbstractRepositorie
 
 class BrandRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
 
-    def save(self, brand:Brand) -> Brand:
+    @staticmethod
+    def save(brand:Brand) -> Brand:
         db.session.add(brand)
         db.session.commit()
         return brand
     
-    def delete(self, brand:Brand) -> None:
+    @staticmethod
+    def delete(brand:Brand) -> None:
         db.session.delete(brand)
         db.session.commit()
     
-    def find(self, id: int) -> 'Brand':
+    @staticmethod
+    def find(id: int) -> 'Brand':
         return Brand.query.get(id)
 
-    def find_all(self, ) -> List['Brand']:
+    @staticmethod
+    def find_all() -> List['Brand']:
         return Brand.query.all()
     
-    def find_by(self, **kwargs) -> List['Brand']:
+    @staticmethod
+    def find_by(**kwargs) -> List['Brand']:
         return Brand.query.filter_by(**kwargs).all()
     
