@@ -6,3 +6,4 @@ from .category_services import CategoryService
 from .receipt_type_services import ReceiptTypeService
 from .batch_services import BatchService
 from .receipt_services import ReceiptService
+from .stock_services import StockService

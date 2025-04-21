@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 import os
 from app.models import Notification
 from app.services import NotificationService
-service = NotificationService()
 
 class NotificationTestCase(unittest.TestCase):
     """
@@ -33,48 +32,48 @@ class NotificationTestCase(unittest.TestCase):
     
     def test_save(self):
         notification = self.__new_notification()
-        notification_save = service.save(notification)
+        notification_save = NotificationService.save(notification)
         self.check_data(notification_save)
 
     def test_find(self):
         notification = self.__new_notification()
-        notification_save = service.save(notification)
+        notification_save = NotificationService.save(notification)
         self.check_data(notification_save)
-        brand_find = service.find(notification_save.id)
+        brand_find = NotificationService.find(notification_save.id)
         self.assertIsNotNone(brand_find)
 
     def test_find_all(self):
         notification = self.__new_notification()
         notification1 = self.__new_notification()
         notification1.message = "Test message 1"
-        notification_save = service.save(notification)
-        service.save(notification1)
+        notification_save = NotificationService.save(notification)
+        NotificationService.save(notification1)
         self.check_data(notification_save)
-        notifications = service.find_all()
+        notifications = NotificationService.find_all()
         self.assertIsNotNone(notifications)
         self.assertEqual(len(notifications), 2)
 
     def test_find_by_id(self):
         notification = self.__new_notification()
-        notification_save = service.save(notification)
+        notification_save = NotificationService.save(notification)
         self.check_data(notification_save)
-        notification_find_by = service.find_by(id = 1)
+        notification_find_by = NotificationService.find_by(id = 1)
         self.assertIsNotNone(notification_find_by)
 
     def test_update(self):
         notification = self.__new_notification()
-        notification_save = service.save(notification)
+        notification_save = NotificationService.save(notification)
         notification_save.message = "Updated message"
-        notification_update = service.save(notification_save)
+        notification_update = NotificationService.save(notification_save)
         self.assertEqual(notification_update.message, "Updated message")
         self.assertEqual(notification_save.message, notification_update.message)
         self.assertEqual(notification.message, notification_update.message)
 
     def test_delete(self):
         notification = self.__new_notification()
-        notification_save = service.save(notification)
+        notification_save = NotificationService.save(notification)
         self.check_data(notification_save)
-        notification_delete = service.delete(notification_save)
+        notification_delete = NotificationService.delete(notification_save)
         self.assertIsNone(notification_delete)
         
     def __new_notification(self):

@@ -5,18 +5,15 @@ receipt_repositories = ReceiptRepositories()
 
 class ReceiptService():
     
-    def save(self, receipt: Receipt) -> 'Receipt':
+    def save(receipt: Receipt) -> 'Receipt':
         receipt_repositories.save(receipt)
         return receipt
-    
-    def delete(self, receipt: 'Receipt') -> None:
-        receipt_repositories.delete(receipt)
 
-    def find(self, id: int) -> 'Receipt':
+    def find(id: int) -> 'Receipt':
         return receipt_repositories.find(id)
     
-    def find_all(self) -> List['Receipt']:
+    def find_all() -> List['Receipt']:
         return receipt_repositories.find_all()
     
-    def find_by(self, **kwargs) -> List['Receipt']:
+    def find_by(**kwargs) -> List['Receipt']:
         return receipt_repositories.find_by(**kwargs)

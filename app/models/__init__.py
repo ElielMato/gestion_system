@@ -8,3 +8,4 @@ from .receipt_type import ReceiptType
 from .receipt_header import ReceiptHeader
 from .receipt_item import ReceiptItem
 from .receipt_footer import ReceiptFooter
+from .stock import Stock

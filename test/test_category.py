@@ -3,9 +3,9 @@ from flask import current_app
 from app import create_app
 import os
 from app import db
-from app.models import Category
 from app.services import CategoryService
-service = CategoryService()
+from utils import new_category
+category = new_category(id=1, name='Categoría', description='Una Categoría')
 
 class CategoryTestCase(unittest.TestCase):
     """
@@ -26,63 +26,48 @@ class CategoryTestCase(unittest.TestCase):
         self.app_context.pop()
     
     def test_category(self):
-        category = self.__new_category()
         self.assertIsNotNone(category)
         self.assertEqual(category.name, "Categoría")
         self.assertEqual(category.description, "Una Categoría")
 
     def test_save(self):
-        category = self.__new_category()
-        category_save = service.save(category)
+        category_save = CategoryService.save(category)
         self.check_data(category_save)
         
     def test_find(self):
-        category = self.__new_category()
-        category_save = service.save(category)
+        category_save = CategoryService.save(category)
         self.check_data(category_save)
-        category_find = service.find(category_save.id)
+        category_find = CategoryService.find(category_save.id)
         self.assertIsNotNone(category_find)
 
     def test_find_all(self):
-        category = self.__new_category()
-        category1 = self.__new_category()
-        category1.name = "Categoría 1"
-        category1.description = "Una Categoría 1"
-        category_save = service.save(category)
-        service.save(category1)
+        category1 = new_category(id=2, name='Categoría 1', description='Una Categoría 1')
+        category_save = CategoryService.save(category)
+        CategoryService.save(category1)
         self.check_data(category_save)
-        categories = service.find_all()
+        categories = CategoryService.find_all()
         self.assertIsNotNone(categories)
         self.assertEqual(len(categories), 2)
 
     def test_find_by_id(self):
-        category = self.__new_category()
-        category_save = service.save(category)
+        category_save = CategoryService.save(category)
         self.check_data(category_save)
-        category_find_by = service.find_by(id=1)
+        category_find_by = CategoryService.find_by(id=1)
         self.assertIsNotNone(category_find_by)
 
     def test_update(self):
-        category = self.__new_category()
-        category_save = service.save(category)
+        category_save = CategoryService.save(category)
         category_save.name = "Categoría Actualizada"
-        category_update_save = service.save(category_save)
+        category_update_save = CategoryService.save(category_save)
         self.assertEqual(category_update_save.name, "Categoría Actualizada")
         self.assertEqual(category_save.name, category_update_save.name)
         self.assertEqual(category.name, category_update_save.name)
         
     def test_delete(self):
-        category = self.__new_category()
-        category_save = service.save(category)
+        category_save = CategoryService.save(category)
         self.check_data(category_save)
-        category_delete = service.delete(category_save)
+        category_delete = CategoryService.delete(category_save)
         self.assertIsNone(category_delete)
-
-    def __new_category(self):
-        category = Category()
-        category.name = "Categoría"
-        category.description = "Una Categoría"
-        return category
     
     def check_data(self, save):
         self.assertIsNotNone(save)

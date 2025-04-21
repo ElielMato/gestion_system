@@ -4,7 +4,6 @@ from app import create_app
 from app import db
 from app.models import Batch
 from app.services import BatchService
-service = BatchService()
 
 class BatchTestCase(unittest.TestCase):
     """
@@ -31,47 +30,47 @@ class BatchTestCase(unittest.TestCase):
 
     def test_save(self):
         batch = self.__new_batch()
-        batch_save = service.save(batch)
+        batch_save = BatchService.save(batch)
         self.check_data(batch_save)
 
     def test_find(self):
         batch = self.__new_batch()
-        batch_save = service.save(batch)
+        batch_save = BatchService.save(batch)
         self.check_data(batch_save)
-        batch_find = service.find(batch_save.id)
+        batch_find = BatchService.find(batch_save.id)
         self.assertIsNotNone(batch_find)
 
     def test_find_all(self):
         batch = self.__new_batch()
         batch1 = self.__new_batch()
         batch1.code = '2'
-        batch_save = service.save(batch)
-        service.save(batch1)
+        batch_save = BatchService.save(batch)
+        BatchService.save(batch1)
         self.check_data(batch_save)
-        batches = service.find_all()
+        batches = BatchService.find_all()
         self.assertIsNotNone(batches)
         self.assertEqual(len(batches), 2)
 
     def test_find_by(self):
         batch = self.__new_batch()
-        batch_save = service.save(batch)
+        batch_save = BatchService.save(batch)
         self.check_data(batch_save)
-        batch_find_by = service.find_by(code = '1')
+        batch_find_by = BatchService.find_by(code = '1')
         self.assertIsNotNone(batch_find_by)
 
     def test_update(self):
         batch = self.__new_batch()
-        batch_save = service.save(batch)
+        batch_save = BatchService.save(batch)
         batch_save.code = '4'
-        batch_update_save = service.save(batch_save)
+        batch_update_save = BatchService.save(batch_save)
         self.assertEqual(batch_update_save.code, '4')
         self.assertEqual(batch_save.code, batch_update_save.code)
 
     def test_delete(self):
         batch = self.__new_batch()
-        batch_save = service.save(batch)
+        batch_save = BatchService.save(batch)
         self.check_data(batch_save)
-        batch_delete = service.delete(batch_save)
+        batch_delete = BatchService.delete(batch_save)
         self.assertIsNone(batch_delete)
 
     def __new_batch(self):

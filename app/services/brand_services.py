@@ -6,18 +6,18 @@ brand_repositories = BrandRepositories()
 
 class BrandService():
 
-    def save(self, brand:Brand) -> Brand:
+    def save(brand:Brand) -> Brand:
         brand_repositories.save(brand)
         return brand
     
-    def delete(self, brand:Brand) -> None:
+    def delete(brand:Brand) -> None:
         brand_repositories.delete(brand)
 
-    def find(self, id: int) -> 'Brand':
+    def find(id: int) -> 'Brand':
         return brand_repositories.find(id)
 
-    def find_all(self) -> List['Brand']:
+    def find_all() -> List['Brand']:
         return brand_repositories.find_all()
     
-    def find_by(self, **kwargs) -> List['Brand']:
+    def find_by(**kwargs) -> List['Brand']:
         return brand_repositories.find_by(**kwargs)

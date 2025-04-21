@@ -6,3 +6,4 @@ from .category_repositories import CategoryRepositories
 from .receipt_type_repositories import ReceiptTypeRepositories
 from .batch_repositories import BatchRepositories
 from .receipt_repositories import ReceiptRepositories
+from .stock_repositories import StockRepositories

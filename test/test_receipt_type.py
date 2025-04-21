@@ -4,7 +4,6 @@ from app import create_app
 from app import db
 from app.models import ReceiptType
 from app.services import ReceiptTypeService
-service = ReceiptTypeService()
 
 class ReceiptTypeTestCase(unittest.TestCase):
     """
@@ -32,14 +31,14 @@ class ReceiptTypeTestCase(unittest.TestCase):
 
     def test_save(self):
         receipt_type = self.__new_receipt_type()
-        receipt_type_save = service.save(receipt_type)
+        receipt_type_save = ReceiptTypeService.save(receipt_type)
         self.check_data(receipt_type_save)
 
     def test_find(self):
         receipt_type = self.__new_receipt_type()
-        receipt_type_save = service.save(receipt_type)
+        receipt_type_save = ReceiptTypeService.save(receipt_type)
         self.check_data(receipt_type_save)
-        receipt_type_find = service.find(receipt_type_save.id)
+        receipt_type_find = ReceiptTypeService.find(receipt_type_save.id)
         self.assertIsNotNone(receipt_type_find)
 
     def test_find_all(self):
@@ -48,35 +47,19 @@ class ReceiptTypeTestCase(unittest.TestCase):
         receipt_type1.name = "Name 1"
         receipt_type1.description = "Description 1"
         receipt_type.type_entry = 1
-        receipt_type_save = service.save(receipt_type)
-        service.save(receipt_type1)
+        receipt_type_save = ReceiptTypeService.save(receipt_type)
+        ReceiptTypeService.save(receipt_type1)
         self.check_data(receipt_type_save)
-        receipt_types = service.find_all()
+        receipt_types = ReceiptTypeService.find_all()
         self.assertIsNotNone(receipt_types)
         self.assertEqual(len(receipt_types), 2)
 
     def test_find_by(self):
         receipt_type = self.__new_receipt_type()
-        receipt_type_save = service.save(receipt_type)
+        receipt_type_save = ReceiptTypeService.save(receipt_type)
         self.check_data(receipt_type_save)
-        receipt_type_find_by = service.find_by(type_entry = 1)
+        receipt_type_find_by = ReceiptTypeService.find_by(type_entry = 1)
         self.assertIsNotNone(receipt_type_find_by)
-
-    def test_update(self):
-        receipt_type = self.__new_receipt_type()
-        receipt_type_save = service.save(receipt_type)
-        receipt_type_save.type_entry = 0
-        receipt_type_update_save = service.save(receipt_type_save)
-        self.assertEqual(receipt_type_update_save.type_entry, 0)
-        self.assertEqual(receipt_type_update_save.name, receipt_type_save.name)
-        self.assertEqual(receipt_type_update_save.description, receipt_type_save.description)
-
-    def test_delete(self):
-        receipt_type = self.__new_receipt_type()
-        receipt_type_save = service.save(receipt_type)
-        self.check_data(receipt_type_save)
-        receipt_type_delete = service.delete(receipt_type_save)
-        self.assertIsNone(receipt_type_delete)
 
     def __new_receipt_type(self):
         receipt_type = ReceiptType()

@@ -1,20 +1,15 @@
 from typing import List
 from app.models import Receipt
 from app import db
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
+from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories
 
-class ReceiptRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
+class ReceiptRepositories(CreateAbstractRepositories, ReadAbstractRepositories):
     
     @staticmethod
     def save(receipt: Receipt) -> Receipt:
         db.session.add(receipt)
         db.session.commit()
         return receipt
-    
-    @staticmethod
-    def delete(receipt: Receipt) -> None:
-        db.session.delete(receipt)
-        db.session.commit()
     
     @staticmethod
     def find(id: int) -> 'Receipt':
