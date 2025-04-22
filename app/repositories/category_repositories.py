@@ -16,8 +16,8 @@ class CategoryRepositories(CreateAbstractRepositories, ReadAbstractRepositories,
         db.session.commit()
 
     @staticmethod
-    def find(category_id: int) -> Category:
-        return Category.query.get(category_id)
+    def find(category: int) -> Category:
+        return Category.query.get(category)
 
     @staticmethod
     def find_all() -> list:

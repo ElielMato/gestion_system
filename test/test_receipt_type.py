@@ -25,7 +25,7 @@ class ReceiptTypeTestCase(unittest.TestCase):
 
     def test_receipt_type(self):
         receipt_type = self.__new_receipt_type()
-        self.assertEqual(receipt_type.type_entry, 1)
+        self.assertEqual(receipt_type.entry, 1)
         self.assertEqual(receipt_type.name, 'Name')
         self.assertEqual(receipt_type.description, 'Description')
 
@@ -46,7 +46,7 @@ class ReceiptTypeTestCase(unittest.TestCase):
         receipt_type1 = self.__new_receipt_type()
         receipt_type1.name = "Name 1"
         receipt_type1.description = "Description 1"
-        receipt_type.type_entry = 1
+        receipt_type.entry = 0
         receipt_type_save = ReceiptTypeService.save(receipt_type)
         ReceiptTypeService.save(receipt_type1)
         self.check_data(receipt_type_save)
@@ -58,12 +58,12 @@ class ReceiptTypeTestCase(unittest.TestCase):
         receipt_type = self.__new_receipt_type()
         receipt_type_save = ReceiptTypeService.save(receipt_type)
         self.check_data(receipt_type_save)
-        receipt_type_find_by = ReceiptTypeService.find_by(type_entry = 1)
+        receipt_type_find_by = ReceiptTypeService.find_by(entry = receipt_type.entry)
         self.assertIsNotNone(receipt_type_find_by)
 
     def __new_receipt_type(self):
         receipt_type = ReceiptType()
-        receipt_type.type_entry = 1
+        receipt_type.entry = 1
         receipt_type.name = "Name"
         receipt_type.description = "Description"
         return receipt_type
