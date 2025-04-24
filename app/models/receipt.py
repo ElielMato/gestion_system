@@ -8,7 +8,7 @@ class Receipt(db.Model):
     """
     __tablename__ = 'receipts'
     id: int = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    header: int = db.Column('id_receipt_header', db.Integer, db.ForeignKey('receipt_headers.id'), nullable=False)
-    footer: int = db.Column('id_receipt_footer', db.Integer, db.ForeignKey('receipt_footers.id'), nullable=False)
-    items = db.relationship('ReceiptItem', back_populates='receipt', lazy=True)
-    receipt_type: int = db.Column('id_receipt_type', db.Integer, db.ForeignKey('receipt_types.id'), nullable=False)
+    receipt_type_id: int = db.Column('receipt_type_id', db.Integer, db.ForeignKey('receipt_types.id'), nullable=False)
+    header_id: int = db.Column('receipt_header_id', db.Integer, db.ForeignKey('receipt_headers.id'), nullable=False)
+    footer_id: int = db.Column('receipt_footer_id', db.Integer, db.ForeignKey('receipt_footers.id'), nullable=False)
+    items = db.relationship('ReceiptItem', back_populates='receipt')
