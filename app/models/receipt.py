@@ -11,4 +11,4 @@ class Receipt(db.Model):
     receipt_type_id: int = db.Column('receipt_type_id', db.Integer, db.ForeignKey('receipt_types.id'), nullable=False)
     header_id: int = db.Column('receipt_header_id', db.Integer, db.ForeignKey('receipt_headers.id'), nullable=False)
     footer_id: int = db.Column('receipt_footer_id', db.Integer, db.ForeignKey('receipt_footers.id'), nullable=False)
-    items = db.relationship('ReceiptItem', back_populates='receipt')
+    items = db.relationship('ReceiptItem', back_populates='receipt', lazy=True)
