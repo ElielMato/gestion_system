@@ -7,10 +7,7 @@ class Batch(db.Model):
     """
     Model Batch with is attribute
     """
-    __tablename__ = "batchs"
+    __tablename__ = "batches"
     id: int = db.Column("id", db.Integer, primary_key=True, autoincrement=True)
     code: str = db.Column("code", db.String(100), nullable=False)
     expiration_date: datetime = db.Column("expiration_date", db.DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
-    
-    def __eq__(self, category: object) -> bool:
-        return (self.id == category.id)

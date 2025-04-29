@@ -6,10 +6,10 @@ from app import db
 from app.models import Stock
 from app.services import StockService
 from utils import new_article, new_brand, new_category, new_batch
-brand = new_brand(id=1, name='Marca', description='Una Marca')
-category = new_category(id=1, name='Category', description='Una Categoria')
-article = new_article(id=1, name='Tupu', description='description', category=category.id, brand=brand.id, minimun_stock=1, code_ean13='abc')
-batch = new_batch(id=1, code="Batch001", expiration_date=datetime.now(timezone.utc))
+brand = new_brand(name='Marca', description='Una Marca')
+category = new_category(name='Category', description='Una Categoria')
+article = new_article(category=category, brand=brand, name='Tupu', description='description', minimun_stock=1, code_ean13='abc')
+batch = new_batch(code="Batch001", expiration_date=datetime.now(timezone.utc))
 
 class TestStock(unittest.TestCase):
     def setUp(self):
@@ -26,8 +26,8 @@ class TestStock(unittest.TestCase):
 
     def test_stock_creation(self):
         stock = Stock()
-        stock.article_id = article.id
-        stock.batch_id = batch.id
+        stock.id_article = article.id
+        stock.id_batch = batch.id
         stock.quantity = 10
 
     def test_save(self):
@@ -37,12 +37,12 @@ class TestStock(unittest.TestCase):
         db.session.add(batch)
         db.session.commit()
 
-        stock = Stock(article_id=article.id, batch_id=batch.id, quantity=10)
+        stock = Stock(id_article=article.id, id_batch=batch.id, quantity=10)
         saved_stock = StockService.save(stock)
 
         self.assertIsNotNone(saved_stock.id)
-        self.assertEqual(saved_stock.article_id, article.id)
-        self.assertEqual(saved_stock.batch_id, batch.id)
+        self.assertEqual(saved_stock.id_article, article.id)
+        self.assertEqual(saved_stock.id_batch, batch.id)
         self.assertEqual(saved_stock.quantity, 10)
        
     

@@ -1,10 +1,9 @@
 from app.models import ReceiptItem
 
-def new_receipt_items(id, quantity, article_id, batch_id, receipt_id):
+def new_receipt_items(quantity: int, id_article: int, id_batch: int, id_receipt: int) -> ReceiptItem:
     item = ReceiptItem()
-    item.id = id
     item.quantity = quantity
-    item.article_id = article_id
-    item.batch_id = batch_id
-    item.receipt_id = receipt_id
+    item.id_article = id_article
+    item.id_batch = id_batch
+    item.id_receipt = id_receipt
     return item

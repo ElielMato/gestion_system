@@ -1,8 +1,8 @@
 from app import db
 from app.models import ReceiptType
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository
 
-class ReceiptTypeRepositories(CreateAbstractRepositories, ReadAbstractRepositories):
+class ReceiptTypeRepository(CreateAbstractRepository, ReadAbstractRepository):
     
     @staticmethod
     def save(receipt_type: ReceiptType) -> ReceiptType:

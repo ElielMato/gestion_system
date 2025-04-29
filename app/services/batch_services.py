@@ -1,23 +1,26 @@
 from typing import List
 from app.models import Batch
-from app.repositories import BatchRepositories
-batch_repositories = BatchRepositories()
-
+from app.repositories import BatchRepository
 
 class BatchService():
     
+    @staticmethod
     def save(batch: Batch) -> 'Batch':
-        batch_repositories.save(batch)
+        BatchRepository.save(batch)
         return batch
     
+    @staticmethod
     def delete(batch: 'Batch') -> None:
-        batch_repositories.delete(batch)
+        BatchRepository.delete(batch)
 
+    @staticmethod
     def find(id: int) -> 'Batch':
-        return batch_repositories.find(id)
+        return BatchRepository.find(id)
     
+    @staticmethod
     def find_all() -> List['Batch']:
-        return batch_repositories.find_all()
+        return BatchRepository.find_all()
     
+    @staticmethod
     def find_by(**kwargs) -> List['Batch']:
-        return batch_repositories.find_by(**kwargs)
+        return BatchRepository.find_by(**kwargs)

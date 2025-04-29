@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from app import db
 from datetime import datetime, timezone
 
-@dataclass
+@dataclass(init=True, eq=True)
 class Notification(db.Model):
     """"
     Model Notification with is attribute

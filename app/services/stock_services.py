@@ -1,22 +1,27 @@
 from typing import List
 from app.models import Stock
-from app.repositories import StockRepositories
-stock_repositories = StockRepositories()
+from app.repositories import StockRepository
 
 class StockService:
 
+    @staticmethod
     def save(stock: Stock) -> 'Stock':
-        stock_repositories.save(stock)
+        StockRepository.save(stock)
         return stock
-    
-    def delete(stock: 'Stock') -> None:
-        stock_repositories.delete(stock)
 
+    @staticmethod
     def find(id: int) -> 'Stock':
-        return stock_repositories.find(id)
+        return StockRepository.find(id)
     
+    @staticmethod
     def find_all() -> List['Stock']:
-        return stock_repositories.find_all()
+        return StockRepository.find_all()
     
+    @staticmethod
     def find_by(**kwargs) -> List['Stock']:
-        return stock_repositories.find_by(**kwargs)
+        return StockRepository.find_by(**kwargs)
+    
+    @staticmethod
+    def register(stock: Stock) -> 'Stock':
+        StockRepository.save(stock)
+        return stock

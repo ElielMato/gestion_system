@@ -1,9 +1,9 @@
 from typing import List
 from app.models import Article
 from app import db
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository
 
-class ArticleRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
+class ArticleRepository(CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository):
     
     @staticmethod
     def save(article: Article) -> 'Article':

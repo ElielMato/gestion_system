@@ -25,26 +25,26 @@ class BrandTestCase(unittest.TestCase):
         self.app_context.pop()
     
     def test_brand(self):
-        brand = new_brand(id=1, name='Marca', description='Una Marca')
+        brand = new_brand(name='Marca', description='Una Marca')
         self.assertIsNotNone(brand)
         self.assertEqual(brand.name, "Marca")
         self.assertEqual(brand.description, "Una Marca")
 
     def test_save(self):
-        brand = new_brand(id=1, name='Marca', description='Una Marca')
+        brand = new_brand(name='Marca', description='Una Marca')
         brand_save = BrandService.save(brand)
         self.check_data(brand_save)
         
     def test_find(self):
-        brand = new_brand(id=1, name='Marca', description='Una Marca')
+        brand = new_brand(name='Marca', description='Una Marca')
         brand_save = BrandService.save(brand)
         self.check_data(brand_save)
         brand_find = BrandService.find(brand_save.id)
         self.assertIsNotNone(brand_find)
 
     def test_find_all(self):
-        brand = new_brand(id=1, name='Marca', description='Una Marca')
-        brand1 = new_brand(id=2, name='Marca 1', description='Una Marca 1')
+        brand = new_brand(name='Marca', description='Una Marca')
+        brand1 = new_brand(name='Marca 1', description='Una Marca 1')
         brand_save = BrandService.save(brand)
         BrandService.save(brand1)
         self.check_data(brand_save)
@@ -53,14 +53,14 @@ class BrandTestCase(unittest.TestCase):
         self.assertEqual(len(brands), 2)
 
     def test_find_by(self):
-        brand = new_brand(id=1, name='Marca', description='Una Marca')
+        brand = new_brand(name='Marca', description='Una Marca')
         brand_save = BrandService.save(brand)
         self.check_data(brand_save)
         brand_find_by = BrandService.find_by(id = 1)
         self.assertIsNotNone(brand_find_by)
 
     def test_update(self):
-        brand = new_brand(id=1, name='Marca', description='Una Marca')
+        brand = new_brand(name='Marca', description='Una Marca')
         brand_save = BrandService.save(brand)
         brand_save.name = "Marca Actualizada"
         brand_update_save = BrandService.save(brand_save)
@@ -69,7 +69,7 @@ class BrandTestCase(unittest.TestCase):
         self.assertEqual(brand.name, brand_update_save.name)
         
     def test_delete(self):
-        brand = new_brand(id=1, name='Marca', description='Una Marca')
+        brand = new_brand(name='Marca', description='Una Marca')
         brand_save = BrandService.save(brand)
         self.check_data(brand_save)
         product_delete = BrandService.delete(brand_save)

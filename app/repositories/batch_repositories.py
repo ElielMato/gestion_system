@@ -1,9 +1,9 @@
 from typing import List
 from app.models import Batch
 from app import db
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository
 
-class BatchRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
+class BatchRepository(CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository):
     
     @staticmethod
     def save(batch: Batch) -> 'Batch':

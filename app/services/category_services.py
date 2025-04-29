@@ -1,22 +1,26 @@
 from typing import List
 from app.models import Category
-from app.repositories import CategoryRepositories
-category_repositories = CategoryRepositories()
+from app.repositories import CategoryRepository
 
 class CategoryService:
 
+    @staticmethod
     def save(category: Category) -> 'Category':
-        category_repositories.save(category)
+        CategoryRepository.save(category)
         return category
     
+    @staticmethod
     def delete(category: 'Category') -> None:
-        category_repositories.delete(category)
+        CategoryRepository.delete(category)
 
+    @staticmethod
     def find(id: int) -> 'Category':
-        return category_repositories.find(id)
+        return CategoryRepository.find(id)
     
+    @staticmethod
     def find_all() -> List['Category']:
-        return category_repositories.find_all()
+        return CategoryRepository.find_all()
     
+    @staticmethod
     def find_by(**kwargs) -> List['Category']:
-        return category_repositories.find_by(**kwargs)
+        return CategoryRepository.find_by(**kwargs)

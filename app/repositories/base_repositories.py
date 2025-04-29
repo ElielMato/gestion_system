@@ -2,13 +2,13 @@ from abc import ABC, abstractmethod
 from typing import List
 from app import db
 
-class CreateAbstractRepositories(ABC):
+class CreateAbstractRepository(ABC):
 
     @abstractmethod
     def save(model:db.Model) -> db.Model:
         pass
 
-class ReadAbstractRepositories(ABC):
+class ReadAbstractRepository(ABC):
     
     @abstractmethod
     def find(id: int) -> 'db.Model':
@@ -22,13 +22,13 @@ class ReadAbstractRepositories(ABC):
     def find_by(**kwargs) -> List['db.Model']:
         pass
 
-class UpdateAbstractRepositories(ABC):
+class UpdateAbstractRepository(ABC):
 
     @abstractmethod
     def update(id: int, model:db.Model) -> db.Model:
         pass
 
-class DeleteAbstractRepositories(ABC):
+class DeleteAbstractRepository(ABC):
     
     @abstractmethod
     def delete(model:db.Model) -> None:

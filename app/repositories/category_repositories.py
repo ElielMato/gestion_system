@@ -1,8 +1,8 @@
 from app import db
 from app.models import Category
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository
 
-class CategoryRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
+class CategoryRepository(CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository):
 
     @staticmethod
     def save(category: Category) -> Category:

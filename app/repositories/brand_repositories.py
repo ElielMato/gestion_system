@@ -1,9 +1,9 @@
 from typing import List
 from app.models import Brand
 from app import db
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository
 
-class BrandRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
+class BrandRepository(CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository):
 
     @staticmethod
     def save(brand:Brand) -> Brand:

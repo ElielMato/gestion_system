@@ -1,9 +1,8 @@
-from app.models import Receipt
+from app.models import Receipt, ReceiptType
 
-def new_receipt(id, receipt_type_id, header_id, footer_id):
+def new_receipt(id_header: int, id_footer: int, receipt_type: ReceiptType) -> Receipt:
     receipt = Receipt()
-    receipt.id = id
-    receipt.receipt_type_id = receipt_type_id
-    receipt.header_id = header_id
-    receipt.footer_id = footer_id
+    receipt.id_header = id_header
+    receipt.id_footer = id_footer
+    receipt.receipt_type = receipt_type
     return receipt

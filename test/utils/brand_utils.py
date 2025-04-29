@@ -1,8 +1,7 @@
 from app.models import Brand
 
-def new_brand(id, name, description):
+def new_brand(name: str, description: str) -> Brand:
     brand = Brand()
-    brand.id = id
     brand.name = name
     brand.description = description
     return brand

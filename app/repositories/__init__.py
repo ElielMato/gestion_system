@@ -1,9 +1,9 @@
-from .base_repositories import CreateAbstractRepositories, ReadAbstractRepositories, UpdateAbstractRepositories, DeleteAbstractRepositories
-from .article_repositories import ArticleRepositories
-from .brand_repositories import BrandRepositories
-from .notification_repositories import NotificationRepositories
-from .category_repositories import CategoryRepositories
-from .receipt_type_repositories import ReceiptTypeRepositories
-from .batch_repositories import BatchRepositories
-from .receipt_repositories import ReceiptRepositories
-from .stock_repositories import StockRepositories
+from .base_repositories import CreateAbstractRepository, ReadAbstractRepository, UpdateAbstractRepository, DeleteAbstractRepository
+from .article_repositories import ArticleRepository
+from .brand_repositories import BrandRepository
+from .notification_repositories import NotificationRepository
+from .category_repositories import CategoryRepository
+from .receipt_type_repositories import ReceiptTypeRepository
+from .batch_repositories import BatchRepository
+from .receipt_repositories import ReceiptRepository
+from .stock_repositories import StockRepository

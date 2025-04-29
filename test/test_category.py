@@ -25,26 +25,26 @@ class CategoryTestCase(unittest.TestCase):
         self.app_context.pop()
     
     def test_category(self):
-        category = new_category(id=1, name='Categoría', description='Una Categoría')
+        category = new_category(name='Categoría', description='Una Categoría')
         self.assertIsNotNone(category)
         self.assertEqual(category.name, "Categoría")
         self.assertEqual(category.description, "Una Categoría")
 
     def test_save(self):
-        category = new_category(id=1, name='Categoría', description='Una Categoría')
+        category = new_category(name='Categoría', description='Una Categoría')
         category_save = CategoryService.save(category)
         self.check_data(category_save)
         
     def test_find(self):
-        category = new_category(id=1, name='Categoría', description='Una Categoría')
+        category = new_category(name='Categoría', description='Una Categoría')
         category_save = CategoryService.save(category)
         self.check_data(category_save)
         category_find = CategoryService.find(category_save.id)
         self.assertIsNotNone(category_find)
 
     def test_find_all(self):
-        category = new_category(id=1, name='Categoría', description='Una Categoría')
-        category1 = new_category(id=2, name='Categoría 1', description='Una Categoría 1')
+        category = new_category(name='Categoría', description='Una Categoría')
+        category1 = new_category(name='Categoría 1', description='Una Categoría 1')
         category_save = CategoryService.save(category)
         CategoryService.save(category1)
         self.check_data(category_save)
@@ -53,14 +53,14 @@ class CategoryTestCase(unittest.TestCase):
         self.assertEqual(len(categories), 2)
 
     def test_find_by_id(self):
-        category = new_category(id=1, name='Categoría', description='Una Categoría')
+        category = new_category(name='Categoría', description='Una Categoría')
         category_save = CategoryService.save(category)
         self.check_data(category_save)
         category_find_by = CategoryService.find_by(id=1)
         self.assertIsNotNone(category_find_by)
 
     def test_update(self):
-        category = new_category(id=1, name='Categoría', description='Una Categoría')
+        category = new_category(name='Categoría', description='Una Categoría')
         category_save = CategoryService.save(category)
         category_save.name = "Categoría Actualizada"
         category_update_save = CategoryService.save(category_save)
@@ -69,7 +69,7 @@ class CategoryTestCase(unittest.TestCase):
         self.assertEqual(category.name, category_update_save.name)
         
     def test_delete(self):
-        category = new_category(id=1, name='Categoría', description='Una Categoría')
+        category = new_category(name='Categoría', description='Una Categoría')
         category_save = CategoryService.save(category)
         self.check_data(category_save)
         category_delete = CategoryService.delete(category_save)

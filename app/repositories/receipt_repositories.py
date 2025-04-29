@@ -1,9 +1,9 @@
 from typing import List
 from app.models import Receipt
 from app import db
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository
 
-class ReceiptRepositories(CreateAbstractRepositories, ReadAbstractRepositories):
+class ReceiptRepository(CreateAbstractRepository, ReadAbstractRepository):
     
     @staticmethod
     def save(receipt: Receipt) -> Receipt:

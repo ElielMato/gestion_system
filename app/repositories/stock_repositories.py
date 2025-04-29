@@ -1,8 +1,8 @@
 from app import db
 from app.models import Stock
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository
 
-class StockRepositories(CreateAbstractRepositories, ReadAbstractRepositories):
+class StockRepository(CreateAbstractRepository, ReadAbstractRepository):
 
     @staticmethod
     def save(stock: Stock) -> Stock:

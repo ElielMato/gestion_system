@@ -1,23 +1,27 @@
 
 from typing import List
 from app.models import Brand
-from app.repositories import BrandRepositories
-brand_repositories = BrandRepositories()
+from app.repositories import BrandRepository
 
 class BrandService():
 
+    @staticmethod
     def save(brand:Brand) -> Brand:
-        brand_repositories.save(brand)
+        BrandRepository.save(brand)
         return brand
     
+    @staticmethod
     def delete(brand:Brand) -> None:
-        brand_repositories.delete(brand)
+        BrandRepository.delete(brand)
 
+    @staticmethod
     def find(id: int) -> 'Brand':
-        return brand_repositories.find(id)
+        return BrandRepository.find(id)
 
+    @staticmethod
     def find_all() -> List['Brand']:
-        return brand_repositories.find_all()
+        return BrandRepository.find_all()
     
+    @staticmethod
     def find_by(**kwargs) -> List['Brand']:
-        return brand_repositories.find_by(**kwargs)
+        return BrandRepository.find_by(**kwargs)

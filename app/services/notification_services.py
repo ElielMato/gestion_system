@@ -1,21 +1,26 @@
 from typing import List
 from app.models import Notification
-from app.repositories import NotificationRepositories
-notification_repositories = NotificationRepositories()
+from app.repositories import NotificationRepository
 
 class NotificationService:
+    
+    @staticmethod
     def save(notification:Notification) -> Notification:
-        notification_repositories.save(notification)
+        NotificationRepository.save(notification)
         return notification
     
+    @staticmethod
     def delete(notification:Notification) -> None:
-        notification_repositories.delete(notification)
+        NotificationRepository.delete(notification)
 
+    @staticmethod
     def find(id: int) -> 'Notification':
-        return notification_repositories.find(id)
+        return NotificationRepository.find(id)
 
+    @staticmethod
     def find_all() -> List['Notification']:
-        return notification_repositories.find_all()
+        return NotificationRepository.find_all()
     
+    @staticmethod
     def find_by(**kwargs) -> List['Notification']:
-        return notification_repositories.find_by(**kwargs)
+        return NotificationRepository.find_by(**kwargs)

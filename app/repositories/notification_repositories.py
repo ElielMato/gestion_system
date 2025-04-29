@@ -1,9 +1,9 @@
 from typing import List
 from app.models import Notification
 from app import db
-from app.repositories import CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories
+from app.repositories import CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository
 
-class NotificationRepositories(CreateAbstractRepositories, ReadAbstractRepositories, DeleteAbstractRepositories):
+class NotificationRepository(CreateAbstractRepository, ReadAbstractRepository, DeleteAbstractRepository):
     
     @staticmethod
     def save(notification: Notification) -> Notification:

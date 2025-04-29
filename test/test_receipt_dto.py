@@ -47,9 +47,9 @@ class ReceiptDtoCase(unittest.TestCase):
 
     def __get_items(self) -> list[ReceiptItemDTO]:
         items = []
-        items.append(ReceiptItemDTO(id_article=1, quantity=2.0, batch_id= 1)) 
-        items.append(ReceiptItemDTO(id_article=2, quantity=3.0, batch_id= 2))
-        items.append(ReceiptItemDTO(id_article=3, quantity=4.0, batch_id= 3))
+        items.append(ReceiptItemDTO(id_article=1, quantity=2.0, id_batch= 1)) 
+        items.append(ReceiptItemDTO(id_article=2, quantity=3.0, id_batch= 2))
+        items.append(ReceiptItemDTO(id_article=3, quantity=4.0, id_batch= 3))
         return items
     
     def __get_footer(self) -> ReceiptFooter:
